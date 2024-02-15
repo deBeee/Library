@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div th:replace="~{fragments.html :: logo}"></div>
+<h2 style="text-align: center">Register</h2>
+<div id="content">
+    <form method="post">
+        <div>
+            <label for="login">Login:</label>
+            <input type="text" id="login" placeholder="login" th:field="*{userModel.login}">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="password" th:field="*{userModel.password}">
+        </div>
+        <input type="submit" value="OK">
+    </form>
+</div>
+</body>
+</html>

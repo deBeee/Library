@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+</head>
+<body>
+<div id="menu" th:fragment="menu">
+    <a href="/authentication/login" class="button" th:if="${!isLogged}">Login</a>
+    <a href="/authentication/register" class="button" th:if="${!isLogged}">Register</a>
+    <a href="/main" class="button" th:if="${isLogged}">Home</a>
+    <a href="/books/borrowed" class="button" th:if="${isLogged}">All Borrowed books</a>
+    <a href="/book/add" class="button" th:if="${isLogged}">Add book</a>
+    <a href="/book/search" class="button" th:if="${isLogged}">Search book</a>
+    <a href="/authentication/logout" class="button" th:if="${isLogged}">Logout</a>
+</div>
+<div id="logo" th:fragment="logo">
+    <img src="/logo.png">
+</div>
+<div id="content" th:fragment="login">
+    <form method="post">
+        <input type="text" placeholder="login" th:field="*{userModel.login}">
+        <input type="password" placeholder="password" th:field="*{userModel.password}">
+        <input type="submit" value="OK">
+    </form>
+</div>
+</body>
+</html>

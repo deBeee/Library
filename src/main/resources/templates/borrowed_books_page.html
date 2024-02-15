@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Library</title>
+  <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div th:replace="~{fragments.html :: logo}"></div>
+<div th:replace="~{fragments.html :: menu}"></div>
+<div style="width: 60%" id="content" th:if="${isLogged}">
+  <div class="book" th:each="borrow : ${borrows}">
+    <div th:text="${borrow.book.title}" class="title"/>
+    <div th:text="${borrow.book.author}" class="author"/>
+    <div th:text="${'Borrowed by: ' + borrow.borrowerName + ', ' + borrow.borrowerSurname}" class="info"/>
+    <div th:text="${'Borrow date: ' + borrow.borrowDate}" class="info"/>
+    <div th:text="${'Expected return date: ' + borrow.borrowDate.plusDays(14)}" class="info"/>
+    <div th:text="${'Is returned: ' + (borrow.isReturned() ? 'Yes' : 'No')}" class="info"/>
+  </div>
+</div>
+</body>
+</html>

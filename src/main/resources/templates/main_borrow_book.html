@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div th:replace="~{fragments.html :: logo}"></div>
+<div th:replace="~{fragments.html :: menu}"></div>
+<div style="width: 60%" id="content" th:if="${isLogged}">
+    <h1 style="text-align: center">All books</h1>
+    <div class="book" th:each="book : ${books}">
+        <div th:text="${book.title}" class="title"/>
+        <div th:text="${book.author}" class="author"/>
+        <div th:text="${'ISBN: ' + book.isbn}" class="isbn"/>
+        <div th:text="${'Ilość: ' + book.quantity}" class="quantity"/>
+        <div th:if="${bookId == book.id}">
+            <p style="margin: 5px 5px">Now click borrow button</p>
+            <a th:href="@{/book/add/{id}(id=${book.id})}">Borrow</a>
+        </div>
+        <form th:if="${!(bookId == book.id)}" method="post">
+            <p style="margin: 5px 5px">Enter your name and surname to borrow this book</p>
+            <input type="text" placeholder="name" name="userName">
+            <input type="password" placeholder="surname" name="userSurname">
+            <input type="hidden" name="bookId" th:value="${book.id}">
+            <input type="submit" class="button" value="Borrow">
+        </form>
+    </div>
+</div>
+</body>
+</html>

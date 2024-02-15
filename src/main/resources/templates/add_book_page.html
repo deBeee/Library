@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+    <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+<div th:replace="~{fragments.html :: logo}"></div>
+<div th:replace="~{fragments.html :: menu}"></div>
+<div style="width: 60%" id="content" th:if="${isLogged}">
+    <form method="post">
+        <input type="text" class="info" placeholder="title" th:field="*{book.title}">
+        <input type="text" class="info" placeholder="author" th:field="*{book.author}">
+        <input type="text" class="info" placeholder="isbn" th:field="*{book.isbn}">
+        <input type="number" class="info" placeholder="quantity" th:field="*{book.quantity}">
+        <input type="submit" class="button" value="ADD">
+    </form>
+</div>
+</body>
+</html>
